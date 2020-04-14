@@ -1,0 +1,26 @@
+<h1>Add student</h1>
+
+<form #formdata="ngForm"  class="form-horizontal"  (ngSubmit)="createStudent()" >
+    
+    <input type="number" placeholder="Enter Id" name="id" [(ngModel)]="stud.id" class="form-control" required  #idd="ngModel"  >
+    <div *ngIf="idd.invalid && idd.touched" class="alert alert-danger">   
+        <div *ngIf="idd.errors.required">Id is Mandatory</div>
+    </div>
+    <br><br>
+
+    <input type="text" placeholder="Enter name" name="name" [(ngModel)]="stud.name" class="form-control" required minlength="5" #namee="ngModel"  >
+    <div *ngIf="namee.invalid && namee.touched" class="alert alert-danger">
+        <div *ngIf="namee.errors.required">Name is Mandatory</div>
+        <div *ngIf="namee.errors.minlength">Minimum length is 4 !</div>
+     
+    </div>
+    <br><br>
+    <input type="text" placeholder="Enter Dept" id="dept" name="dept" [(ngModel)]="stud.dept" class="form-control" required pattern="[a-zA-Z]*" #deptt="ngModel"><br><br>
+    <div *ngIf="deptt.invalid && deptt.touched" class="alert alert-danger">
+    <div *ngIf="deptt.errors.required">Field can't be empty</div>
+    <div *ngIf="deptt.errors.pattern"> Department can have alphabets only</div>
+    </div>
+
+    <input type="submit" value="Submit" [disabled]="!formdata.valid"   class="btn btn-danger">
+
+</form>
